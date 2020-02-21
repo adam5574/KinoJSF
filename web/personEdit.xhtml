@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<f:metadata>
+    <f:viewAction action="#{personEditBB.onLoad()}" />
+</f:metadata>
+
+<h:head>
+	<meta charset="utf-8"/>
+	<title>Edycja osoby</title>
+</h:head>
+
+<h:body style="background-color: #eee; margin: 0.5em;">
+
+	<p:panel toggleable="true" header="Edycja rekordu">
+
+		<h:form rendered="#{personEditBB.user != null}">
+			<h:panelGrid columns="3" cellpadding="5">
+
+				<h:outputLabel for="p-nick" value="nick" />
+				<p:inputText id="p-nick" value="#{personEditBB.user.nick}"
+							 required="true" requiredMessage="Podaj nick"
+							 validatorMessage="co najwyżej 40 znaków">
+					<f:validateLength maximum="40" />
+				</p:inputText>
+				<p:message for="p-nick" display="icon"/>
+
+
+				<h:outputLabel for="p-password" value="hasło:" />
+				<p:password id="p-password" value="#{personEditBB.user.password}"
+							required="true" requiredMessage="Podaj hasło"
+							validatorMessage="co najwyżej 40 znaków">
+					<f:validateLength maximum="40" />
+				</p:password>
+				<p:message for="p-password" display="icon"/>
+
+
+
+				<h:outputLabel for="p-name" value="imię:" />
+				<p:inputText id="p-name" value="#{personEditBB.user.name}"
+					required="true" requiredMessage="Podaj imię"
+					validatorMessage="co najwyżej 40 znaków">
+					<f:validateLength maximum="40" />
+				</p:inputText>
+				<p:message for="p-name" display="icon"/>
+
+				<h:outputLabel for="p-surname" value="nazwisko:" />
+				<p:inputText id="p-surname" value="#{personEditBB.user.surname}"
+					required="true" requiredMessage="Podaj nazwisko"
+					validatorMessage="co najwyżej 40 znaków">
+					<f:validateLength maximum="40" />
+				</p:inputText>
+				<p:message for="p-surname" display="icon"/>
+
+				<h:outputLabel for="p-email" value="email:" />
+				<p:inputText id="p-email" value="#{personEditBB.user.email}"
+							 required="true" requiredMessage="Podaj email"
+							 validatorMessage="email niepoprawny">
+					<f:validateRegex pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
+				</p:inputText>
+				<p:message for="p-email" display="icon"/>
+
+
+
+				<h:outputLabel for="p-role" value="rola:" />
+				<p:selectOneMenu id="p-role" value="#{personEditBB.user.role}"
+							 required="true" requiredMessage="Podaj rolę"
+							 validatorMessage="co najwyżej 40 znaków">
+					<f:validateLength maximum="40" />
+					<f:selectItem itemLabel="user" itemValue="user" />
+					<f:selectItem itemLabel="worker" itemValue="worker" />
+					<f:selectItem itemLabel="admin" itemValue="admin" />
+				</p:selectOneMenu>
+				<p:message for="p-role" display="icon"/>
+
+
+
+
+
+
+
+			</h:panelGrid>
+
+			<p:messages id="msgs" />
+
+			<p:commandButton value="Zapisz" action="#{personEditBB.saveData()}"
+				style="margin-right: 1em;" update="@form" />
+
+			<p:button value="Anuluj" outcome="personList" />
+		</h:form>
+
+	</p:panel>
+
+</h:body>
+
+</html>

@@ -1,0 +1,18 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-ear" name="ear">
+    <output-path>$PROJECT_DIR$/out/artifacts/ear</output-path>
+    <root id="root">
+      <element id="artifact" artifact-name="ejb" />
+      <element id="artifact" artifact-name="web" />
+      <element id="directory" name="lib">
+        <element id="library" level="project" name="EJB-3.2.2" />
+        <element id="library" level="project" name="jakarta.enterprise.cdi-api-2.0.2" />
+        <element id="library" level="project" name="jakarta.inject-api-1.0" />
+        <element id="library" level="project" name="Java EE 6-Java EE 6" />
+        <element id="library" level="project" name="jboss-jsf-api_2.3_spec-3.0.0.Final" />
+        <element id="library" level="project" name="JPA 2.0-2.0" />
+        <element id="library" level="project" name="PrimeFaces-6.1" />
+      </element>
+    </root>
+  </artifact>
+</component>

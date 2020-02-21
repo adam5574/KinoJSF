@@ -1,0 +1,10 @@
+<component name="ArtifactManager">
+  <artifact type="ejb-jar" name="ejb">
+    <output-path>$PROJECT_DIR$/out/artifacts/ejb</output-path>
+    <root id="archive" name="ejb.jar">
+      <element id="jpa-descriptors" facet="Kino/jpa/JPA" />
+      <element id="module-output" name="Kino" />
+      <element id="javaee-facet-resources" facet="Kino/ejb/EJB" />
+    </root>
+  </artifact>
+</component>

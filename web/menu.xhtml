@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/templates/page-template.xhtml">
+    <ui:define name="pageContent">
+        <h:head>
+            <meta charset="utf-8"/>
+            <title>Menu</title>
+        </h:head>
+
+        <h:body style="background-color: #eee; margin: 0.5em;">
+
+
+            <h:form id="form-table" style="margin-bottom:1em;">
+
+               
+
+
+            </h:form>
+
+            <p:commandButton value="Wróć"
+                             action="#{movieListBB.menu()}" style="margin-bottom:1em;"/>
+
+        </h:body>
+    </ui:define>
+</ui:composition>
+</html>

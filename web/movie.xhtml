@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/templates/page-template.xhtml">
+    <ui:define name="pageContent">
+        <h:head>
+            <meta charset="utf-8"/>
+            <title>Lista filmów</title>
+        </h:head>
+
+        <h:body style="background-color: #eee; margin: 0.5em;">
+
+
+            <h:form id="form-table" style="margin-bottom:1em;">
+
+                <p:dataTable value="#{movieListBB.getFullList()}" var="m">
+
+                    <p:column priority="5">
+                        <f:facet name="header">
+                            <h:outputText value="Tytuł filmu"/>
+                        </f:facet>
+                        <h:outputText value="#{m.title}"/>
+                    </p:column>
+
+                    <p:column priority="5">
+                        <f:facet name="header">
+                            <h:outputText value="Kategoria"/>
+                        </f:facet>
+                        <h:outputText value="#{m.categoryByIdcategory.category}"/>
+                    </p:column>
+
+                    <p:column priority="5">
+                        <f:facet name="header">
+                            <h:outputText value="Czas trwania(minuty)"/>
+                        </f:facet>
+                        <h:outputText value="#{m.time}"/>
+                    </p:column>
+
+
+                </p:dataTable>
+
+            </h:form>
+
+            <p:commandButton value="Wróć"
+                             action="#{movieListBB.menu()}" style="margin-bottom:1em;"/>
+
+        </h:body>
+    </ui:define>
+</ui:composition>
+</html>
