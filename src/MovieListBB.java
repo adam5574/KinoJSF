@@ -21,7 +21,7 @@ public class MovieListBB {
     private static final String PAGE_PERSON_LIST = "personList?faces-redirect=true";
     private static final String PAGE_STAY_AT_THE_SAME = null;
     private static final String PAGE_MOVIE = "movie?faces-redirect=true";
-
+    private static final String PAGE_MOVIE_ADD = "movieAdd?faces-redirect=true";
 
     private String title;
 
@@ -45,23 +45,8 @@ public class MovieListBB {
     public List<Movie> getFullList(){ return movieDAO.getFullList();
     }
 
-    public List<Movie> getCatName(){ return movieDAO.getCatName();
-    }
-    public List<Movie> getList(){
-        List<Movie> list = null;
 
-        //1. Prepare search params
-        Map<String,Object> searchParams = new HashMap<String, Object>();
 
-        if (title != null && title.length() > 0){
-            searchParams.put("title", title);
-        }
-
-        //2. Get list
-        list = movieDAO.getList(searchParams);
-
-        return list;
-    }
     public String menu(){
 
         return PAGE_PERSON_LIST;
@@ -72,6 +57,17 @@ public class MovieListBB {
         return PAGE_MOVIE;
     }
 
+    public String newMovie(){
+        Movie movie = new Movie();
 
+        //1. Pass object through session
+        //HttpSession session = (HttpSession) extcontext.getSession(true);
+        //session.setAttribute("person", person);
+
+        //2. Pass object through flash
+        flash.put("movie", movie);
+
+        return PAGE_MOVIE_ADD;
+    }
 
 }

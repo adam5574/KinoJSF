@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+<f:metadata>
+    <f:viewAction action="#{movieAddBB.onLoad()}"/>
+</f:metadata>
+
+
+<h:head>
+    <meta charset="utf-8"/>
+    <title>Dodaj film</title>
+</h:head>
+
+<h:body style="background-color: #eee; margin: 0.5em;">
+
+    <p:panel toggleable="true" header="Edycja rekordu">
+
+        <h:form rendered="#{movieAddBB.movie != null}">
+            <h:panelGrid columns="3" cellpadding="5">
+
+                <h:outputLabel for="p-title" value="Tytuł"/>
+                <p:inputText id="p-title" value="#{movieAddBB.movie.title}"
+                             required="true" requiredMessage="Podaj tytuł"
+                             validatorMessage="co najwyżej 40 znaków">
+                    <f:validateLength maximum="40"/>
+                </p:inputText>
+                <p:message for="p-title" display="icon"/>
+
+
+                <h:outputLabel for="p-category" value="Kategoria"/>
+                <p:inputText id="p-category" value="#{movieAddBB.movie.categoryByIdcategory}"
+                             required="true" requiredMessage="Podaj kategorię"
+                             validatorMessage="co najwyżej 40 znaków">
+                    <f:validateLength maximum="40"/>
+                </p:inputText>
+                <p:message for="p-category" display="icon"/>
+
+
+            </h:panelGrid>
+
+            <p:messages id="msgs"/>
+
+            <p:commandButton value="Zapisz" action="#{movieAddBB.saveData()}"
+                             style="margin-right: 1em;" update="@form"/>
+
+            <p:button value="Anuluj" outcome="personList"/>
+        </h:form>
+
+    </p:panel>
+
+</h:body>
+
+</html>

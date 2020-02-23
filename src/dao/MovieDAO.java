@@ -53,19 +53,7 @@ public class MovieDAO {
     }
 
 
-    public List<Movie> getCatName() {
-        List<Movie> list = null;
 
-        Query query = em.createQuery("select Movie.title, Movie.time, Category.category from Movie RIGHT JOIN Category ON Movie.idcategory=Category.idcategory");
-
-        try {
-            list = query.getResultList();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        return list;
-    }
 
 
     public List<Movie> getList(Map<String, Object> searchParams) {

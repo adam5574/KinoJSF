@@ -19,11 +19,16 @@
 
     <ui:define name="content">
 
+        <p:commandButton value="Menu"
+                         action="#{menuListBB.menu()}" style="margin-bottom:1em;"/>
+
         <p:commandButton value="Lista osób"
                          action="#{menuListBB.personList()}" style="margin-bottom:1em;"/>
 
         <p:commandButton value="Filmy"
                          action="#{menuListBB.movie()}" style="margin-bottom:1em;"/>
+        <p:commandButton value="Seans"
+                         action="#{menuListBB.seance()}" style="margin-bottom:1em;"/>
 
         <ui:insert name="pageContent"></ui:insert>
 

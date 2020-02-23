@@ -22,6 +22,7 @@ public class MenuListBB {
     private static final String PAGE_STAY_AT_THE_SAME = null;
     private static final String PAGE_MOVIE = "movie?faces-redirect=true";
     private static final String PAGE_MENU = "menu?faces-redirect=true";
+    private static final String PAGE_SEANCE = "seance?faces-redirect=true";
 
     @Inject
     ExternalContext extcontext;
@@ -38,6 +39,10 @@ public class MenuListBB {
     public String movie(){
 
         return PAGE_MOVIE;
+    }
+    public String seance(){
+
+        return PAGE_SEANCE;
     }
     public String personList(){
     return PAGE_PERSON_LIST;

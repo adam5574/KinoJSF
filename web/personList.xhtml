@@ -30,11 +30,9 @@
 
             <h:form id="form-table" style="margin-bottom:1em;">
 
-                <p:commandButton value="Dodaj nową osobę"
-                                 action="#{personListBB.newPerson()}" style="margin-bottom:1em;"/>
 
-                <p:commandButton value="Filmy"
-                                 action="#{personListBB.movie()}" style="margin-bottom:1em;"/>
+
+
 
 
                 <p:dataTable value="#{personListBB.list}" var="p">
@@ -76,9 +74,11 @@
 
                     </p:column>
 
+
                 </p:dataTable>
             </h:form>
-
+            <p:commandButton value="Dodaj nową osobę"
+                             action="#{personListBB.newPerson()}" style="margin-bottom:1em;"/>
         </h:body>
     </ui:define>
 </ui:composition>

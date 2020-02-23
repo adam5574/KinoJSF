@@ -1,5 +1,6 @@
-import java.io.IOException;
-import java.io.Serializable;
+import dao.MovieDAO;
+import entities.Movie;
+import entities.User;
 
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
@@ -8,23 +9,22 @@ import javax.faces.context.Flash;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
-
-import dao.UserDAO;
-import entities.User;
+import java.io.IOException;
+import java.io.Serializable;
 
 @Named
 @ViewScoped
-public class PersonEditBB implements Serializable {
+public class MovieAddBB implements Serializable {
     private static final long serialVersionUID = 1L;
 
     private static final String PAGE_PERSON_LIST = "personList?faces-redirect=true";
     private static final String PAGE_STAY_AT_THE_SAME = null;
 
-    private User user = new User();
-    private User loaded = null;
+    private Movie movie = new Movie();
+    private Movie loaded = null;
 
     @EJB
-    UserDAO userDAO;
+    MovieDAO movieDAO;
 
     @Inject
     FacesContext context;
@@ -32,8 +32,8 @@ public class PersonEditBB implements Serializable {
     @Inject
     Flash flash;
 
-    public User getUser() {
-        return user;
+    public Movie getMovie() {
+        return movie;
     }
 
     public void onLoad() throws IOException {
@@ -42,11 +42,11 @@ public class PersonEditBB implements Serializable {
         // loaded = (Person) session.getAttribute("person");
 
         // 2. load person passed through flash
-        loaded = (User) flash.get("user");
+        loaded = (Movie) flash.get("movie");
 
         // cleaning: attribute received => delete it from session
         if (loaded != null) {
-            user = loaded;
+            movie = loaded;
             // session.removeAttribute("person");
         } else {
             context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Błędne użycie systemu", null));
@@ -59,25 +59,11 @@ public class PersonEditBB implements Serializable {
     }
 
     public String saveData() {
-        // no Person object passed
-        if (loaded == null) {
-            return PAGE_STAY_AT_THE_SAME;
-        }
+		if (loaded == null) {
+			return PAGE_STAY_AT_THE_SAME;
+		}
+                movieDAO.create(movie);
 
-        try {
-            if (user.getNick() == null) {
-                // new record
-                userDAO.create(user);
-            } else {
-                // existing record
-                userDAO.merge(user);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-            context.addMessage(null,
-                    new FacesMessage(FacesMessage.SEVERITY_ERROR, "wystąpił błąd podczas zapisu", null));
-            return PAGE_STAY_AT_THE_SAME;
-        }
 
         return PAGE_PERSON_LIST;
     }
