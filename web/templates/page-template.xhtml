@@ -9,28 +9,11 @@
 
 <ui:composition template="/templates/main-template.xhtml">
 
-    <ui:define name="title">
 
-        <p:commandLink action="#{menuListBB.menu()}">
-            <h:graphicImage value="resources/template/img/baner.png"
-                            style="width: 1000px; height:200px;  display: block; margin-left: auto; margin-right: auto; width: 50%;"/>
-        </p:commandLink>
-    </ui:define>
 
     <ui:define name="content">
 
-        <p:commandButton value="Menu"
-                         action="#{menuListBB.menu()}" style="margin-bottom:1em;"/>
 
-        <p:commandButton value="Lista osób"
-                         action="#{menuListBB.personList()}" style="margin-bottom:1em;"/>
-
-        <p:commandButton value="Filmy"
-                         action="#{menuListBB.movie()}" style="margin-bottom:1em;"/>
-        <p:commandButton value="Seans"
-                         action="#{menuListBB.seance()}" style="margin-bottom:1em;"/>
-        <p:commandButton value="Zaloguj się"
-                         action="#{menuListBB.login()}" style="margin-bottom:1em;"/>
 
         <ui:insert name="pageContent"></ui:insert>
 

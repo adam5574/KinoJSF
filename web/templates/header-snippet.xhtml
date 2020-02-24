@@ -1,13 +1,68 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:p="http://primefaces.org/ui"
-	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-	xmlns:f="http://xmlns.jcp.org/jsf/core"
-	xmlns:h="http://xmlns.jcp.org/jsf/html">
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css"
+          integrity="sha384-nn4HPE8lTHyVtfCBi5yW9d20FjT8BJwUXyWZT9InLYax14RDjBj46LmSztkmNP9w" crossorigin="anonymous">
+    </link>
+    <meta charset="utf-8"></meta>
+    <meta name="viewport" content="width=device-width, initial-scale=1"></meta>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+          type="text/css"></link>
+    <link rel="stylesheet" href="https://static.pingendo.com/bootstrap/bootstrap-4.3.1.css"></link>
+    <style>
+        .space {
+            height: 700px;
+            width: 100%;
 
-	<p:panel toggleable="true" styleClass="bottom-space">
-		<h1>
-			<ui:insert name="title">...</ui:insert>
-		</h1>
-	</p:panel>
+        }
+
+        li {
+            font-size: 20px;
+        }
+
+
+        nav {
+            height: 120px;
+        }
+
+
+        p {
+            font-size: 15px;
+        }
+    </style>
+
+
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark w-100  ">
+        <div class="container">
+            <button class="navbar-toggler navbar-toggler-right border-0" type="button" data-toggle="collapse"
+                    data-target="#navbar12">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbar12">
+                <p:commandLink action="#{menuListBB.menu()}">
+                    <i class="fa d-inline fa-lg fa-circle"></i>
+                    <b> Kino Piast</b>
+                </p:commandLink>
+                <ul class="navbar-nav mx-auto">
+
+					 <p:commandButton value="Menu"
+                                     action="#{menuListBB.menu()}" style="margin-bottom:1em;"/>
+
+                    <p:commandButton value="Lista osób"
+                                     action="#{menuListBB.personList()}" style="margin-bottom:1em;"/>
+
+                    <p:commandButton value="Filmy"
+                                     action="#{menuListBB.movie()}" style="margin-bottom:1em;"/>
+                    <p:commandButton value="Seans"
+                                     action="#{menuListBB.seance()}" style="margin-bottom:1em;"/>
+                    <p:commandButton value="Zaloguj się"
+                                     action="#{menuListBB.login()}" style="margin-bottom:1em;"/>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
 
 </ui:composition>
