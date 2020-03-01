@@ -52,10 +52,7 @@ public class MovieListBB {
         return PAGE_PERSON_LIST;
     }
 
-    public String movie(){
 
-        return PAGE_MOVIE;
-    }
 
     public String newMovie(){
         Movie movie = new Movie();

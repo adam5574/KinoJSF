@@ -1,9 +1,0 @@
-<component name="libraryTable">
-  <library name="jboss-jsf-api_2.3_spec-3.0.0.Final">
-    <CLASSES>
-      <root url="jar://D:/Java/wildfly/wildfly-18.0.0.Final/modules/system/layers/base/javax/faces/api/main/jboss-jsf-api_2.3_spec-3.0.0.Final.jar!/" />
-    </CLASSES>
-    <JAVADOC />
-    <SOURCES />
-  </library>
-</component>

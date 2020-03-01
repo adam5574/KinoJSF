@@ -32,13 +32,22 @@
                 <p:message for="p-title" display="icon"/>
 
 
-                <h:outputLabel for="p-category" value="Kategoria"/>
-                <p:inputText id="p-category" value="#{movieAddBB.movie.categoryByIdcategory}"
-                             required="true" requiredMessage="Podaj kategorię"
-                             validatorMessage="co najwyżej 40 znaków">
-                    <f:validateLength maximum="40"/>
-                </p:inputText>
-                <p:message for="p-category" display="icon"/>
+                <h:outputLabel for="p-time" value="Czas trwania(min):" />
+                <h:inputText id="p-time"  value="#{movieAddBB.movie.time}"  required="true" requiredMessage="Podaj tytuł"
+                             validatorMessage="co najwyżej 3 znaki">
+                    <f:validateLength maximum="3"/>
+                    <f:convertNumber integerOnly="true" type="number" />
+                </h:inputText>
+                <p:message for="p-time" display="icon"/>
+
+
+
+
+                <h:outputLabel for="p-category" value="Kategoria:" />
+                <h:selectOneMenu   id="p-category" value="#{movieAddBB.movie.categoryByIdcategory}">
+                    <f:selectItems value="#{movieAddBB.categories}"  />
+                </h:selectOneMenu>
+
 
 
             </h:panelGrid>

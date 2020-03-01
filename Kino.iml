@@ -41,9 +41,10 @@
     <orderEntry type="library" name="EJB-3.2.2" level="project" />
     <orderEntry type="library" name="JPA 2.0-2.0" level="project" />
     <orderEntry type="library" name="PrimeFaces-6.1" level="project" />
-    <orderEntry type="library" name="jakarta.enterprise.cdi-api-2.0.2" level="project" />
-    <orderEntry type="library" name="jakarta.inject-api-1.0" level="project" />
-    <orderEntry type="library" name="jboss-jsf-api_2.3_spec-3.0.0.Final" level="project" />
     <orderEntry type="library" name="Java EE 6-Java EE 6" level="project" />
+    <orderEntry type="library" name="jakarta.enterprise.cdi-api-2.0.21" level="project" />
+    <orderEntry type="library" name="jakarta.inject-api-1.01" level="project" />
+    <orderEntry type="library" name="jboss-jsf-api_2.3_spec-3.0.0.Final1" level="project" />
+    <orderEntry type="library" name="all-themes-1.0.10" level="project" />
   </component>
 </module>

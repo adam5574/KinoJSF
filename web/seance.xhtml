@@ -17,42 +17,73 @@
 
 
             <h:form id="form-table" style="margin-bottom:1em;">
+                <table>
 
-                <p:dataTable value="#{seanceListBB.getFullList()}" var="s">
+                    <tr>
+                        <td width="70%" height="70%" style="padding-left:70px">
 
-                <p:column priority="5">
-                    <f:facet name="header">
-                        <h:outputText value="Tytuł filmu"/>
-                    </f:facet>
-                    <h:outputText value="#{s.movieByIdmovie.title}"/>
-                </p:column>
+                            <p:dataTable value="#{seanceListBB.availableSeance}" var="s" style="height:450px">
 
-                <p:column priority="5">
-                    <f:facet name="header">
-                        <h:outputText value="Numer sali"/>
-                    </f:facet>
-                    <h:outputText value="#{s.hallByIdhall.idhall}"/>
-                </p:column>
+                            <p:column priority="5">
+                                <f:facet name="header">
+                                    <h:outputText value="Tytuł filmu"/>
+                                </f:facet>
+                                <h:outputText value="#{s.movieByIdmovie.title}"/>
+                            </p:column>
 
-                <p:column priority="5">
-                    <f:facet name="header">
-                        <h:outputText value="Czas trwania(minuty)"/>
-                    </f:facet>
-                    <h:outputText value="#{s.movieByIdmovie.time}"/>
-                </p:column>
 
-                <p:column priority="5">
-                    <f:facet name="header">
-                        <h:outputText value="Data seansu"/>
-                    </f:facet>
-                    <h:outputText value="#{s.seanceDate}"/>
-                </p:column>
+                            <p:column priority="3">
+                                <f:facet name="header">
+                                    <h:outputText value="Czas trwania(minuty)"/>
+                                </f:facet>
+                                <h:outputText value="#{s.movieByIdmovie.time}"/>
+                            </p:column>
 
-                </p:dataTable>
+                            <p:column priority="4">
+                                <f:facet name="header">
+                                    <h:outputText value="Data seansu"/>
+                                </f:facet>
+                                <h:outputText value="#{s.seanceDate}"/>
+                            </p:column>
+
+
+                            <p:column priority="5">
+                                <f:facet name="header">
+                                    <h:outputText value="Numer sali"/>
+                                </f:facet>
+                                <h:outputText value="#{s.hallByIdhall.idhall}"/>
+                            </p:column>
+
+
+                            <p:column priority="5">
+                                <f:facet name="header">
+                                    <h:outputText value="Ilość dostępnych biletów"/>
+                                </f:facet>
+                                <h:outputText value="#{s.tickets}"/>
+                            </p:column>
+
+
+                            <p:column priority="5" rendered="#{not empty remoteClient.details.name}">
+                                <f:facet name="header">
+                                    <h:outputText value="Zarezerwuj bilet"/>
+                                </f:facet>
+                                <h:inputText id="ile">
+                                    <f:convertNumber integerOnly="true" type="number"/>
+                                </h:inputText>
+
+
+                            </p:column>
+                            </p:dataTable>
+                        </td>
+                        <td>
+                            <img class="img-fluid d-block" src="http://tiny.cc/mf1pkz" width="50%" height="30%"></img>
+
+                        </td>
+                    </tr>
+
+                </table>
             </h:form>
 
-            <p:commandButton value="Wróć"
-                             action="#{movieListBB.menu()}" style="margin-bottom:1em;"/>
 
         </h:body>
     </ui:define>

@@ -1,3 +1,4 @@
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -18,6 +19,7 @@ import entities.User;
 public class PersonListBB {
 	private static final String PAGE_PERSON_EDIT = "personEdit?faces-redirect=true";
 	private static final String PAGE_MOVIE = "movie?faces-redirect=true";
+	private static final String PAGE_REGISTER = "register?faces-redirect=true";
 	private static final String PAGE_STAY_AT_THE_SAME = null;
 
 	private String surname;
@@ -58,6 +60,20 @@ public class PersonListBB {
 		return list;
 	}
 
+
+
+	public List<User> getUserDet(String nick){
+		List<User> list = null;
+
+		//1. Prepare search params
+
+		list = Collections.singletonList(userDAO.getUserDet(nick));
+
+		return list;
+	}
+
+
+
 	public String newPerson(){
 		User user = new User();
 		
@@ -69,6 +85,19 @@ public class PersonListBB {
 		flash.put("user", user);
 		
 		return PAGE_PERSON_EDIT;
+	}
+
+	public String newRegister(){
+		User user = new User();
+
+		//1. Pass object through session
+		//HttpSession session = (HttpSession) extcontext.getSession(true);
+		//session.setAttribute("person", person);
+
+		//2. Pass object through flash
+		flash.put("user", user);
+
+		return PAGE_REGISTER;
 	}
 
 	public String editPerson(User user){

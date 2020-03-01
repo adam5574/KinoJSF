@@ -6,6 +6,7 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 import java.util.List;
 import java.util.Map;
 
@@ -50,6 +51,48 @@ public class UserDAO {
 
 		return list;
 	}
+
+	public User getUserFromDatabase(String nick, String password) {
+		TypedQuery<User> query = em.createQuery("select u FROM User U WHERE u.nick LIKE :nick AND u.password LIKE :password", User.class);
+		query.setParameter("nick", nick);
+		query.setParameter("password", password);
+		try {
+			return query.getSingleResult();
+		} catch (Exception ex) {
+			return null;
+		}
+	}
+
+
+
+	public User getUserDet(String nick) {
+		TypedQuery<User> query = em.createQuery("select u FROM User U WHERE u.nick LIKE :nick", User.class);
+		query.setParameter("nick", nick);
+
+		try {
+			return query.getSingleResult();
+		} catch (Exception ex) {
+			return null;
+		}
+	}
+
+
+
+	public List<User> getUserRolesFromDatabase() {
+		List<User> list = null;
+
+		Query query = em.createQuery("select u from User u");
+
+		try {
+			list = query.getResultList();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return list;
+	}
+
+
 
 	public List<User> getList(Map<String, Object> searchParams) {
 		List<User> list = null;

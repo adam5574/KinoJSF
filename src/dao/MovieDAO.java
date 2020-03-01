@@ -52,6 +52,21 @@ public class MovieDAO {
         return list;
     }
 
+    public List<Movie> getCatList() {
+        List<Movie> list = null;
+
+        Query query = em.createQuery("select categoryByIdcategory from Movie ");
+
+        try {
+            list = query.getResultList();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return list;
+    }
+
+
 
 
 

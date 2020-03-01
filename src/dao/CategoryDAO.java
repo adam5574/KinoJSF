@@ -1,6 +1,6 @@
 package dao;
 
-import entities.Seance;
+import entities.Category;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -14,31 +14,33 @@ import java.util.Map;
 //Implemented as stateless Enterprise Java bean - server side code that can be invoked even remotely.
 
 @Stateless
-public class SeanceDAO {
+public class CategoryDAO {
     private final static String UNIT_NAME = "jsfcourse-simplePU";
 
     // Dependency injection (no setter method is needed)
     @PersistenceContext(unitName = UNIT_NAME)
     protected EntityManager em;
 
-    public void create(Seance seance) {
-        em.persist(seance);
+    public void create(Category category) {
+        em.persist(category);
     }
 
-    public Seance merge(Seance seance) {
-        return em.merge(seance);
+    public Category merge(Category category) {
+        return em.merge(category);
     }
 
-    public void remove(Seance seance) { em.remove(em.merge(seance)); }
-
-    public Seance find(Object id) {
-        return em.find(Seance.class, id);
+    public void remove(Category category) {
+        em.remove(em.merge(category));
     }
 
-    public List<Seance> getFullList() {
-        List<Seance> list = null;
+    public Category find(Object id) {
+        return em.find(Category.class, id);
+    }
 
-        Query query = em.createQuery("select s from Seance s");
+    public List<Category> getFullList() {
+        List<Category> list = null;
+
+        Query query = em.createQuery("select c from Category c");
 
         try {
             list = query.getResultList();
@@ -48,25 +50,6 @@ public class SeanceDAO {
 
         return list;
     }
-
-    public List<Seance> getAvailableSeance() {
-        List<Seance> list = null;
-
-        Query query = em.createQuery("select s from Seance s where s.tickets>0 AND s.seanceDate>= CURRENT_TIMESTAMP");
-
-        try {
-            list = query.getResultList();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        return list;
-    }
-
-
-
-
-
 
 
 

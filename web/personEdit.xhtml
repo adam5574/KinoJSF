@@ -22,6 +22,8 @@
 		<h:form rendered="#{personEditBB.user != null}">
 			<h:panelGrid columns="3" cellpadding="5">
 
+
+
 				<h:outputLabel for="p-nick" value="nick" />
 				<p:inputText id="p-nick" value="#{personEditBB.user.nick}"
 							 required="true" requiredMessage="Podaj nick"
@@ -79,9 +81,13 @@
 				<p:message for="p-role" display="icon"/>
 
 
-
-
-
+				<h:outputLabel for="p-tel" value="tel:"  />
+				<h:inputText id="p-tel"  value="#{personEditBB.user.tel}"  required="true" requiredMessage="Podaj numer telefonu"
+							 validatorMessage="musi być 9 cyfr" >
+					<f:validateLength maximum="9" minimum="9"/>
+					<f:convertNumber integerOnly="true" type="number" />
+				</h:inputText>
+				<p:message for="p-tel" display="icon"/>
 
 
 

@@ -1,7 +1,10 @@
 import dao.MovieDAO;
+import dao.CategoryDAO;
+import entities.Category;
 import entities.Movie;
 import entities.User;
 
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
@@ -11,6 +14,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.IOException;
 import java.io.Serializable;
+import java.util.List;
 
 @Named
 @ViewScoped
@@ -21,10 +25,34 @@ public class MovieAddBB implements Serializable {
     private static final String PAGE_STAY_AT_THE_SAME = null;
 
     private Movie movie = new Movie();
+    private Category category;
     private Movie loaded = null;
+    private List<Category> categories;
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
+    }
+
+    public List<Category> getCategories() {
+        return categories;
+    }
+
+    public void setCategories(List<Category> categories) {
+        this.categories = categories;
+    }
 
     @EJB
     MovieDAO movieDAO;
+    CategoryDAO categoryDAO;
+
+    @PostConstruct
+    public void init() {
+        categories =categoryDAO.getFullList();
+    }
 
     @Inject
     FacesContext context;
@@ -32,9 +60,19 @@ public class MovieAddBB implements Serializable {
     @Inject
     Flash flash;
 
+
+
+
+    public List<Movie> getcat() {
+         List<Movie> cat;
+        return cat = movieDAO.getCatList();
+    }
+
     public Movie getMovie() {
         return movie;
     }
+
+
 
     public void onLoad() throws IOException {
         // 1. load person passed through session

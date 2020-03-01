@@ -43,6 +43,8 @@ public class SeanceListBB {
 
     public List<Seance> getFullList(){ return seanceDAO.getFullList();
     }
+    public List<Seance> getAvailableSeance(){ return seanceDAO.getAvailableSeance();
+    }
 
 
 
