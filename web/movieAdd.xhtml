@@ -24,7 +24,7 @@
             <h:panelGrid columns="3" cellpadding="5">
 
                 <h:outputLabel for="p-title" value="Tytuł"/>
-                <p:inputText id="p-title" value="#{movieAddBB.movie.title}"
+                <p:inputText id="p-title" value="#{movieAddBB.movieName}"
                              required="true" requiredMessage="Podaj tytuł"
                              validatorMessage="co najwyżej 40 znaków">
                     <f:validateLength maximum="40"/>
@@ -33,7 +33,7 @@
 
 
                 <h:outputLabel for="p-time" value="Czas trwania(min):" />
-                <h:inputText id="p-time"  value="#{movieAddBB.movie.time}"  required="true" requiredMessage="Podaj tytuł"
+                <h:inputText id="p-time"  value="#{movieAddBB.movieTime}"  required="true" requiredMessage="Podaj tytuł"
                              validatorMessage="co najwyżej 3 znaki">
                     <f:validateLength maximum="3"/>
                     <f:convertNumber integerOnly="true" type="number" />
@@ -44,8 +44,8 @@
 
 
                 <h:outputLabel for="p-category" value="Kategoria:" />
-                <h:selectOneMenu   id="p-category" value="#{movieAddBB.movie.categoryByIdcategory}">
-                    <f:selectItems value="#{movieAddBB.categories}"  />
+                <h:selectOneMenu   id="p-category" value="#{movieAddBB.categoryName}" >
+                    <f:selectItems value="#{movieAddBB.categories}"  var="category" itemLabel="#{category.category}" itemValue="#{category.category}" />
                 </h:selectOneMenu>
 
 
@@ -54,10 +54,9 @@
 
             <p:messages id="msgs"/>
 
-            <p:commandButton value="Zapisz" action="#{movieAddBB.saveData()}"
-                             style="margin-right: 1em;" update="@form"/>
+            <p:commandButton value="Zapisz"  action="#{movieAddBB.saveData()}" update="@form" />
 
-            <p:button value="Anuluj" outcome="personList"/>
+            <p:button value="Anuluj" outcome="moviePanel"/>
         </h:form>
 
     </p:panel>

@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+<f:metadata>
+    <f:viewAction action="#{seanceAddBB.onLoad()}"/>
+</f:metadata>
+
+
+<h:head>
+
+    <meta charset="utf-8"/>
+    <title>Dodaj seans</title>
+</h:head>
+
+<h:body style="background-color: #eee; margin: 0.5em;">
+
+    <p:panel toggleable="true" header="Dodaj seans">
+
+        <h:form >
+            <h:panelGrid columns="3" cellpadding="5">
+
+                <h:outputLabel for="s-movie" value="Film:"/>
+                <h:selectOneMenu id="s-movie" value="#{seanceAddBB.movieName}">
+                    <f:selectItems value="#{seanceAddBB.movies}" var="movie" itemLabel="#{movie.title}"
+                                   itemValue="#{movie.title}"/>
+                </h:selectOneMenu>
+                <p:message for="s-movie" display="icon"/>
+
+                <h:outputLabel for="s-hall" value="Sala:"/>
+                <h:selectOneMenu id="s-hall" value="#{seanceAddBB.hallNumber}" converter="javax.faces.Integer">
+                    <f:selectItems value="#{seanceAddBB.halls}" var="hall" itemLabel="#{hall.idhall}"
+                                   itemValue="#{hall.idhall}"/>
+
+                </h:selectOneMenu>
+                <p:message for="s-hall" display="icon"/>
+
+                <h:outputLabel for="s-worker" value="Pracownik obsługujący:"/>
+                <h:selectOneMenu id="s-worker" value="#{seanceAddBB.workerName}">
+                    <f:selectItems value="#{seanceAddBB.workers}" var="worker" itemLabel="#{worker.nick}"
+                                   itemValue="#{worker.nick}"/>
+                </h:selectOneMenu>
+                <p:message for="s-worker" display="icon"/>
+
+
+
+                <h:outputLabel for="s-ticket" value="Ilość biletów:" />
+                <h:inputText id="s-ticket"  value="#{seanceAddBB.tickets}"  required="true" requiredMessage="Podaj ilość biletów"
+                             validatorMessage="Za dużo biletów">
+                    <f:validateLength maximum="3"/>
+                    <f:convertNumber integerOnly="true" type="number" />
+                </h:inputText>
+                <p:message for="s-ticket" display="icon"/>
+
+
+                <p:outputLabel for="s-date" value="Data seansu (YYYY-DD-MM) : " />
+                <p:inputMask id="s-date" value="#{seanceAddBB.date}" mask="9999-99-99" required="true" requiredMessage="Podaj datę - format : YYYY-DD-MM"/>
+                <p:message for="s-date" display="icon"/>
+
+
+
+
+
+
+
+
+            </h:panelGrid>
+
+            <p:messages id="msgs"/>
+
+            <p:commandButton value="Zapisz" action="#{seanceAddBB.saveData()}" update="@form"/>
+
+            <p:button value="Anuluj" outcome="moviePanel"/>
+        </h:form>
+
+    </p:panel>
+
+</h:body>
+
+</html>

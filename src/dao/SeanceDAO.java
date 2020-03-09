@@ -1,6 +1,7 @@
 package dao;
 
 import entities.Seance;
+import entities.User;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -38,7 +39,7 @@ public class SeanceDAO {
     public List<Seance> getFullList() {
         List<Seance> list = null;
 
-        Query query = em.createQuery("select s from Seance s");
+        Query query = em.createQuery("select s from Seance s order by s.seanceDate desc ");
 
         try {
             list = query.getResultList();
@@ -52,7 +53,7 @@ public class SeanceDAO {
     public List<Seance> getAvailableSeance() {
         List<Seance> list = null;
 
-        Query query = em.createQuery("select s from Seance s where s.tickets>0 AND s.seanceDate>= CURRENT_TIMESTAMP");
+        Query query = em.createQuery("select s from Seance s where s.tickets>0 AND s.seanceDate>= CURRENT_TIMESTAMP order by s.seanceDate");
 
         try {
             list = query.getResultList();
@@ -63,7 +64,18 @@ public class SeanceDAO {
         return list;
     }
 
+    public Seance findSingleSeance(int id) {
+        try {
+            Query query = em.createQuery("SELECT s FROM Seance s WHERE s.idseanse = :id ", Seance.class);
+            query.setParameter("id", id);
+            return (Seance) query.getSingleResult();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
 
+
+    }
 
 
 

@@ -8,6 +8,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
+import entities.Movie;
 import entities.Person;
 
 //DAO - Data Access Object for Person entity
@@ -94,4 +95,8 @@ public class PersonDAO {
 		return list;
 	}
 
-}
+	}
+
+
+
+

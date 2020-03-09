@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/templates/page-template.xhtml">
+    <ui:define name="pageContent">
+        <h:head>
+            <meta charset="utf-8"/>
+            <title>Seans</title>
+            <style>
+                .old {
+                    background-color: #fca752 !important;
+                    background-image: none !important;
+                    color: #000000 !important;
+                }
+                .myButton {
+                    box-shadow: 0px 10px 14px -7px #3e7327;
+                    background: linear-gradient(to bottom, #77b55a 5%, #72b352 100%);
+                    background-color: #77b55a;
+                    border-radius: 4px;
+                    border: 1px solid #4b8f29;
+                    display: inline-block;
+                    cursor: pointer;
+                    color: #ffffff;
+                    font-family: Arial;
+                    font-size: 13px;
+                    font-weight: bold;
+                    padding: 12px 41px;
+                    text-decoration: none;
+                    text-shadow: 0px 1px 0px #5b8a3c;
+                }
+
+                .myButton:hover {
+                    background: linear-gradient(to bottom, #72b352 5%, #77b55a 100%);
+                    background-color: #72b352;
+                }
+
+                .myButton:active {
+                    position: relative;
+                    top: 1px;
+                }
+
+                body {
+                    background-image: url("https://cdn.inspirationhut.net/wp-content/uploads/2013/05/201.png");
+                }
+            </style>
+        </h:head>
+
+        <h:body>
+            <p align="center">
+                <h:button value="Panel użytkowników" outcome="personList.xhtml" class="myButton" style="margin-right: 20px"/>
+                <h:button value="Panel filmów" outcome="moviePanel.xhtml" class="myButton"/>
+            </p>
+
+
+            <h:form id="form-table" style="margin-bottom:1em;">
+
+
+                <p:dataTable value="#{seanceListBB.fullList}" var="s"
+                             style="margin-bottom:20px ;height:450px ; width:70%"  paginatorTemplate="{PageLinks}  "
+                             paginator="true" rows="5"  >
+
+                    <p:column priority="5">
+                        <f:facet name="header">
+                            <h:outputText value="Tytuł filmu"/>
+                        </f:facet>
+                        <h:outputText value="#{s.movieByIdmovie.title}"/>
+                    </p:column>
+
+
+                    <p:column priority="3">
+                        <f:facet name="header">
+                            <h:outputText value="Czas trwania(minuty)"/>
+                        </f:facet>
+                        <h:outputText value="#{s.movieByIdmovie.time}"/>
+                    </p:column>
+
+                    <p:column priority="4">
+                        <f:facet name="header">
+                            <h:outputText value="Data seansu"/>
+                        </f:facet>
+                        <h:outputText value="#{s.seanceDate}"/>
+                    </p:column>
+
+
+                    <p:column priority="5">
+                        <f:facet name="header">
+                            <h:outputText value="Numer sali"/>
+                        </f:facet>
+                        <h:outputText value="#{s.hallByIdhall.idhall}"/>
+                    </p:column>
+
+
+                    <p:column priority="5">
+                        <f:facet name="header">
+                            <h:outputText value="Ilość dostępnych biletów"/>
+                        </f:facet>
+                        <h:outputText value="#{s.tickets}"/>
+                    </p:column>
+
+                    <p:column priority="5">
+                        <f:facet name="header">
+                            <h:outputText value="Pracownik obsługujący seans"/>
+                        </f:facet>
+                        <h:outputText value="#{s.userByIduser.nick}"/>
+                    </p:column>
+
+
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="opcje"/>
+                        </f:facet>
+
+
+                        <p:commandButton value="Usuń"
+                                         action="#{seanceListBB.deleteSeance(s)}" update="@form"/>
+
+
+                    </p:column>
+
+
+                    <p:messages id="messages" showDetail="true" closable="true"/>
+
+
+                </p:dataTable>
+
+
+            </h:form>
+            <p:commandButton value="Dodaj seans"
+                             action="#{seanceListBB.newSeance}" style="margin-bottom:1em;" styleClass="myButton"/>
+            <p:commandButton value="Dodaj film"
+                             action="#{movieListBB.newMovie()}" style="margin-bottom:1em;" styleClass="myButton"/>
+
+
+        </h:body>
+    </ui:define>
+</ui:composition>
+</html>

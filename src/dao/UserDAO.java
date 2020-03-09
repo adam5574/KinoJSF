@@ -16,128 +16,148 @@ import java.util.Map;
 
 @Stateless
 public class UserDAO {
-	private final static String UNIT_NAME = "jsfcourse-simplePU";
+    private final static String UNIT_NAME = "jsfcourse-simplePU";
 
-	// Dependency injection (no setter method is needed)
-	@PersistenceContext(unitName = UNIT_NAME)
-	protected EntityManager em;
+    // Dependency injection (no setter method is needed)
+    @PersistenceContext(unitName = UNIT_NAME)
+    protected EntityManager em;
 
-	public void create(User user) {
-		em.persist(user);
-	}
+    public void create(User user) {
+        em.persist(user);
+    }
 
-	public User merge(User user) {
-		return em.merge(user);
-	}
+    public User merge(User user) {
+        return em.merge(user);
+    }
 
-	public void remove(User user) {
-		em.remove(em.merge(user));
-	}
+    public void remove(User user) {
+        em.remove(em.merge(user));
+    }
 
-	public User find(Object id) {
-		return em.find(User.class, id);
-	}
+    public User find(Object id) {
+        return em.find(User.class, id);
+    }
 
-	public List<User> getFullList() {
-		List<User> list = null;
+    public List<User> getFullList() {
+        List<User> list = null;
 
-		Query query = em.createQuery("select u from User u");
+        Query query = em.createQuery("select u from User u");
 
-		try {
-			list = query.getResultList();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+        try {
+            list = query.getResultList();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
-		return list;
-	}
+        return list;
+    }
 
-	public User getUserFromDatabase(String nick, String password) {
-		TypedQuery<User> query = em.createQuery("select u FROM User U WHERE u.nick LIKE :nick AND u.password LIKE :password", User.class);
-		query.setParameter("nick", nick);
-		query.setParameter("password", password);
-		try {
-			return query.getSingleResult();
-		} catch (Exception ex) {
-			return null;
-		}
-	}
-
-
-
-	public User getUserDet(String nick) {
-		TypedQuery<User> query = em.createQuery("select u FROM User U WHERE u.nick LIKE :nick", User.class);
-		query.setParameter("nick", nick);
-
-		try {
-			return query.getSingleResult();
-		} catch (Exception ex) {
-			return null;
-		}
-	}
+    public User getUserFromDatabase(String nick, String password) {
+        TypedQuery<User> query = em.createQuery("select u FROM User U WHERE u.nick LIKE :nick AND u.password LIKE :password", User.class);
+        query.setParameter("nick", nick);
+        query.setParameter("password", password);
+        try {
+            return query.getSingleResult();
+        } catch (Exception ex) {
+            return null;
+        }
+    }
 
 
+    public User getUserDet(String nick) {
+        TypedQuery<User> query = em.createQuery("select u FROM User U WHERE u.nick LIKE :nick", User.class);
+        query.setParameter("nick", nick);
 
-	public List<User> getUserRolesFromDatabase() {
-		List<User> list = null;
-
-		Query query = em.createQuery("select u from User u");
-
-		try {
-			list = query.getResultList();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
-		return list;
-	}
+        try {
+            return query.getSingleResult();
+        } catch (Exception ex) {
+            return null;
+        }
+    }
 
 
+    public List<User> getUserRolesFromDatabase() {
+        List<User> list = null;
 
-	public List<User> getList(Map<String, Object> searchParams) {
-		List<User> list = null;
+        Query query = em.createQuery("select u from User u");
 
-		// 1. Build query string with parameters
-		String select = "select u ";
-		String from = "from User u ";
-		String where = "";
-		String orderby = "order by u.surname asc, u.name";
+        try {
+            list = query.getResultList();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
-		// search for surname
-		String surname = (String) searchParams.get("surname");
-		if (surname != null) {
-			if (where.isEmpty()) {
-				where = "where ";
-			} else {
-				where += "and ";
-			}
-			where += "u.surname like :surname ";
-		}
-		
-		// ... other parameters ... 
+        return list;
+    }
 
-		// 2. Create query object
-		Query query = em.createQuery(select + from + where + orderby);
+    public List<User> getWorkers() {
+        List<User> list = null;
+        String worker = "worker";
+        Query query = em.createQuery("select u from User u where u.role like :worker");
+        query.setParameter("worker", worker);
+        try {
+            list = query.getResultList();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
-		// 3. Set configured parameters
-		if (surname != null) {
-			query.setParameter("surname", surname+"%");
-		}
-
-		// ... other parameters ... 
-
-		// 4. Execute query and retrieve list of Person objects
-		try {
-			list = query.getResultList();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
-		return list;
-	}
+        return list;
+    }
 
 
+    public List<User> getList(Map<String, Object> searchParams) {
+        List<User> list = null;
+
+        // 1. Build query string with parameters
+        String select = "select u ";
+        String from = "from User u ";
+        String where = "";
+        String orderby = "order by u.surname asc, u.name";
+
+        // search for surname
+        String surname = (String) searchParams.get("surname");
+        if (surname != null) {
+            if (where.isEmpty()) {
+                where = "where ";
+            } else {
+                where += "and ";
+            }
+            where += "u.surname like :surname ";
+        }
+
+        // ... other parameters ...
+
+        // 2. Create query object
+        Query query = em.createQuery(select + from + where + orderby);
+
+        // 3. Set configured parameters
+        if (surname != null) {
+            query.setParameter("surname", surname + "%");
+        }
+
+        // ... other parameters ...
+
+        // 4. Execute query and retrieve list of Person objects
+        try {
+            list = query.getResultList();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return list;
+    }
+
+    public User findSinglePerson(String nick) {
+        try {
+            Query query = em.createQuery("SELECT u FROM User u WHERE u.nick LIKE :nick", User.class);
+            query.setParameter("nick", nick);
+            return (User) query.getSingleResult();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
 
 
-
+    }
 }
+

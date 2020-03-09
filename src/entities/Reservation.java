@@ -1,15 +1,14 @@
 package entities;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
 public class Reservation {
     private int idreservation;
     private int amount;
+    private User userByIduser;
+    private Seance seanceByIdseance;
 
     @Id
     @Column(name = "idreservation", nullable = false)
@@ -43,5 +42,24 @@ public class Reservation {
     @Override
     public int hashCode() {
         return Objects.hash(idreservation, amount);
+    }
+    @ManyToOne
+    @JoinColumn(name = "nick", referencedColumnName = "nick", nullable = false)
+    public User getUserByIduser() {
+        return  userByIduser;
+    }
+
+    public void setUserByIduser(User userByIduser) {
+        this.userByIduser = userByIduser;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "idseance", referencedColumnName = "idseanse", nullable = false)
+    public Seance getSeanceByIdseance() {
+        return seanceByIdseance;
+    }
+
+    public void setSeanceByIdseance(Seance seanceByIdseance) {
+        this.seanceByIdseance = seanceByIdseance;
     }
 }

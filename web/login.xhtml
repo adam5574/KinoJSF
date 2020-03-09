@@ -1,34 +1,56 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html >
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:p="http://primefaces.org/ui">
+<h:head>
+    <meta charset="utf-8"/>
+    <title>Menu</title>
+    <style>
+        body {
+        background-image: url("https://cdn.inspirationhut.net/wp-content/uploads/2013/05/201.png");
+    }
+       .centred-form {
+           align-content: center;
+        }
+    </style>
+</h:head>
 <ui:composition template="/templates/page-template.xhtml">
     <ui:define name="pageContent">
+        <h:body>
+
+            <div id="formdiv">
+                <h:form id="frm">
+                    <h:panelGrid styleClass="centred-form">
+
+                    <p:outputLabel for="login" value="Login" style="margin-right:10px"/>
+                    <p:inputText id="login" value="#{loginBB.login}"/>
+
+                    <br></br>
 
 
-
-            <h:form>
-                <h:panelGrid columns="2" cellpadding="5" styleClass="bottom-space">
-                    <h:outputLabel for="login" value="login:"/>
-                    <h:inputText id="login" value="#{loginBB.login}"
-                                 />
-                    <h:outputLabel for="pass" value="hasło:"/>
-                    <h:inputSecret id="pass" value="#{loginBB.pass}"
-                                 />
-                </h:panelGrid>
-
-                <h:messages/>
-
-                <h:commandButton value="Zaloguj" action="#{loginBB.doLogin()}" update="msg"/>
-                <h:commandButton value="Zarejstruj się"
-                                 action="#{personListBB.newRegister()}" style="margin-bottom:1em;" />
-            </h:form>
+                    <p:outputLabel for="pass" value="Hasło" style="margin-right:10px"/>
+                    <p:password id="pass" value="#{loginBB.pass}"/>
 
 
+                    <br></br>
+                    </h:panelGrid>
+
+                    <h:messages/>
+
+
+                    <h:commandButton styleClass="btn btn-primary" value="Zaloguj" action="#{loginBB.doLogin()}" update="msg"/>
+                    <br></br>
+                    <br></br>
+                    <h:commandButton  styleClass="btn btn-primary" value="Zarejstruj się"
+                                     action="#{personListBB.newRegister()}" style="margin-bottom:1em;"/>
+                </h:form>
+            </div>
+            <p style="height:400px ">
+            </p>
+        </h:body>
     </ui:define>
 
 </ui:composition>

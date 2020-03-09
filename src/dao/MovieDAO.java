@@ -7,6 +7,7 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 import java.util.List;
 import java.util.Map;
 
@@ -38,6 +39,17 @@ public class MovieDAO {
         return em.find(Movie.class, id);
     }
 
+    public Movie findMovieByName(String title) {
+        try {
+            Query query = em.createQuery("SELECT m FROM Movie M WHERE m.title LIKE :title", Movie.class);
+            query.setParameter("title", title);
+            return (Movie) query.getSingleResult();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
     public List<Movie> getFullList() {
         List<Movie> list = null;
 
@@ -67,10 +79,6 @@ public class MovieDAO {
     }
 
 
-
-
-
-
     public List<Movie> getList(Map<String, Object> searchParams) {
         List<Movie> list = null;
 
@@ -98,7 +106,7 @@ public class MovieDAO {
 
         // 3. Set configured parameters
         if (title != null) {
-            query.setParameter("title", title+"%");
+            query.setParameter("title", title + "%");
         }
 
         // ... other parameters ...
@@ -112,7 +120,6 @@ public class MovieDAO {
 
         return list;
     }
-
 
 
 }

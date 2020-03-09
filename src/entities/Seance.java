@@ -11,6 +11,7 @@ public class Seance {
     private int tickets;
     private Movie movieByIdmovie;
     private Hall hallByIdhall;
+    private User userByIduser;
 
     @Id
     @Column(name = "idseanse", nullable = false)
@@ -75,5 +76,15 @@ public class Seance {
 
     public void setHallByIdhall(Hall hallByIdhall) {
         this.hallByIdhall = hallByIdhall;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "nick", referencedColumnName = "nick", nullable = false)
+    public User getUserByIduser() {
+        return userByIduser;
+    }
+
+    public void setUserByIduser(User userByIduser) {
+        this.userByIduser = userByIduser;
     }
 }

@@ -33,9 +33,11 @@
                 /login.xhtml : PUBLIC;
                 /register.xhtml : PUBLIC;
                 /seance.xhtml : PUBLIC;
-
+                /movieAdd.xhtml : PUBLIC;
                 /personList.xhtml :worker, admin;
+                /moviePanel.xhtml :worker, admin;
                 /personEdit.xhtml :worker, admin;
+                /seanceAdd.xhtml :worker, admin;
 
             </param-value>
         </init-param>

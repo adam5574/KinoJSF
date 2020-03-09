@@ -11,9 +11,43 @@
         <h:head>
             <meta charset="utf-8"/>
             <title>Lista osób </title>
+
+            <style>
+                .myButton {
+                    box-shadow: 0px 10px 14px -7px #3e7327;
+                    background:linear-gradient(to bottom, #77b55a 5%, #72b352 100%);
+                    background-color:#77b55a;
+                    border-radius:4px;
+                    border:1px solid #4b8f29;
+                    display:inline-block;
+                    cursor:pointer;
+                    color:#ffffff;
+                    font-family:Arial;
+                    font-size:13px;
+                    font-weight:bold;
+                    padding:12px 41px;
+                    text-decoration:none;
+                    text-shadow:0px 1px 0px #5b8a3c;
+                }
+                .myButton:hover {
+                    background:linear-gradient(to bottom, #72b352 5%, #77b55a 100%);
+                    background-color:#72b352;
+                }
+                .myButton:active {
+                    position:relative;
+                    top:1px;
+                }
+
+
+            </style>
         </h:head>
 
         <h:body style="background-color: #eee; margin: 0.5em;">
+            <p align="center" >
+                <h:button value="Panel użytkowników" outcome="personList.xhtml" class="myButton" style="margin-right: 20px"/>
+                <h:button value="Panel filmów" outcome="moviePanel.xhtml" class="myButton"/>
+
+            </p>
 
             <p:panel header="Opcje wyszukiwania"
                      style="margin-bottom: 1em;">
