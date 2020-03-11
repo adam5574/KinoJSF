@@ -8,7 +8,7 @@
 
 <ui:composition template="/templates/page-template.xhtml">
     <ui:define name="pageContent">
-        <h:head>
+        <head>
             <style>
                 body {
                     background-image: url("https://cdn.inspirationhut.net/wp-content/uploads/2013/05/201.png");
@@ -16,7 +16,7 @@
             </style>
             <meta charset="utf-8"/>
             <title>Lista filmów</title>
-        </h:head>
+        </head>
 
         <h:body>
 
@@ -73,7 +73,7 @@
 
                                 <p:column priority="3">
                                     <f:facet name="header">
-                                        <h:outputText value="tytuł filmu"/>
+                                        <h:outputText value="Tytuł filmu"/>
                                     </f:facet>
                                     <h:outputText value="#{r.seanceByIdseance.movieByIdmovie.title}"/>
                                 </p:column>

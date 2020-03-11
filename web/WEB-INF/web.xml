@@ -29,14 +29,14 @@
                 /javax.faces.resource : PUBLIC;
                 /menu.xhtml : PUBLIC;
                 /movie.xhtml : PUBLIC;
-                /myAcc.xhtml : PUBLIC;
+                /myAcc.xhtml : worker, admin, user;
                 /login.xhtml : PUBLIC;
                 /register.xhtml : PUBLIC;
                 /seance.xhtml : PUBLIC;
-                /movieAdd.xhtml : PUBLIC;
-                /personList.xhtml :worker, admin;
+                /movieAdd.xhtml : worker, admin;
+                /personList.xhtml :admin;
                 /moviePanel.xhtml :worker, admin;
-                /personEdit.xhtml :worker, admin;
+                /personEdit.xhtml :admin;
                 /seanceAdd.xhtml :worker, admin;
 
             </param-value>

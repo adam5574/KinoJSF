@@ -13,7 +13,7 @@
             <title>Lista osób </title>
 
             <style>
-                .myButton {
+                .myButton1 {
                     box-shadow: 0px 10px 14px -7px #3e7327;
                     background:linear-gradient(to bottom, #77b55a 5%, #72b352 100%);
                     background-color:#77b55a;
@@ -29,14 +29,21 @@
                     text-decoration:none;
                     text-shadow:0px 1px 0px #5b8a3c;
                 }
-                .myButton:hover {
+                .myButton1:hover {
                     background:linear-gradient(to bottom, #72b352 5%, #77b55a 100%);
                     background-color:#72b352;
                 }
-                .myButton:active {
+                .myButton1:active {
                     position:relative;
                     top:1px;
                 }
+
+                                      .adult {
+                                          background-color: #d1b87a !important;
+                                          background-image: none !important;
+                                          color: #000000 !important;
+                                      }
+
 
 
             </style>
@@ -44,8 +51,9 @@
 
         <h:body style="background-color: #eee; margin: 0.5em;">
             <p align="center" >
-                <h:button value="Panel użytkowników" outcome="personList.xhtml" class="myButton" style="margin-right: 20px"/>
-                <h:button value="Panel filmów" outcome="moviePanel.xhtml" class="myButton"/>
+                <h:button value="Panel filmów" outcome="moviePanel.xhtml" class="myButton1" style="margin-right: 20px"/>
+                <h:button value="Panel użytkowników" outcome="personList.xhtml" class="myButton1" />
+
 
             </p>
 
@@ -69,7 +77,8 @@
 
 
 
-                <p:dataTable value="#{personListBB.list}" var="p">
+                <p:dataTable value="#{personListBB.list}" var="p" rowStyleClass="#{'adult'}" paginatorTemplate="{PageLinks}  "
+                             paginator="true" rows="10">
 
                     <p:column priority="5">
                         <f:facet name="header">
@@ -86,11 +95,37 @@
                     </p:column>
 
                     <p:column priority="4">
+                    <f:facet name="header">
+                        <h:outputText value="Nick"/>
+                    </f:facet>
+                    <h:outputText value="#{p.nick}">
+
+                    </h:outputText>
+                </p:column>
+
+                    <p:column priority="3">
                         <f:facet name="header">
-                            <h:outputText value="Nick"/>
+                            <h:outputText value="Email"/>
                         </f:facet>
-                        <h:outputText value="#{p.nick}">
-                            <f:convertDateTime pattern="dd-MM-yyyy"/>
+                        <h:outputText value="#{p.email}">
+
+                        </h:outputText>
+                    </p:column>
+
+                    <p:column priority="2">
+                        <f:facet name="header">
+                            <h:outputText value="Nr. telefonu"/>
+                        </f:facet>
+                        <h:outputText value="#{p.tel}">
+
+                        </h:outputText>
+                    </p:column>
+                    <p:column priority="2">
+                        <f:facet name="header">
+                            <h:outputText value="Rola"/>
+                        </f:facet>
+                        <h:outputText value="#{p.role}">
+
                         </h:outputText>
                     </p:column>
 

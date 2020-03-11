@@ -18,7 +18,7 @@
 
 <h:body style="background-color: #eee; margin: 0.5em;">
 
-    <p:panel toggleable="true" header="Edycja rekordu">
+    <p:panel toggleable="true" header="Dodaj film">
 
         <h:form rendered="#{movieAddBB.movie != null}">
             <h:panelGrid columns="3" cellpadding="5">
@@ -33,7 +33,7 @@
 
 
                 <h:outputLabel for="p-time" value="Czas trwania(min):" />
-                <h:inputText id="p-time"  value="#{movieAddBB.movieTime}"  required="true" requiredMessage="Podaj tytuł"
+                <h:inputText id="p-time"  value="#{movieAddBB.movieTime}"  required="true" requiredMessage="Podaj czas trwania"
                              validatorMessage="co najwyżej 3 znaki">
                     <f:validateLength maximum="3"/>
                     <f:convertNumber integerOnly="true" type="number" />

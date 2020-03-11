@@ -15,13 +15,24 @@
        .centred-form {
            align-content: center;
         }
+        div.container4 {
+            height: 10em;
+            position: relative }
+        div.container4 p {
+            margin: 0;
+            background: yellow;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin-right: -50%;
+            transform: translate(-50%, -50%) }
     </style>
 </h:head>
 <ui:composition template="/templates/page-template.xhtml">
     <ui:define name="pageContent">
         <h:body>
 
-            <div id="formdiv">
+            <div id="formdiv" class="container4">
                 <h:form id="frm">
                     <h:panelGrid styleClass="centred-form">
 

@@ -1,11 +1,9 @@
 import dao.ReservationDAO;
 import dao.SeanceDAO;
 import dao.UserDAO;
-import entities.Movie;
-import entities.Reservation;
-import entities.Seance;
-import entities.User;
+import entities.*;
 
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
@@ -35,8 +33,25 @@ public class SeanceListBB {
 
     private int ticketNumber;
 
-
     private int seanceNr;
+
+    private List<Seance> aseance;
+
+
+    @PostConstruct
+    public void init() {
+        aseance = seanceDAO.getAvailableSeance();
+    }
+
+    public void setAseance(List<Seance> aseance) {
+        this.aseance = aseance;
+    }
+
+    public List<Seance> getAseance() {
+        return aseance;
+    }
+
+
 
     @Inject
     ExternalContext extcontext;
@@ -100,37 +115,72 @@ public class SeanceListBB {
     }
 
     public String newReservation(String nicks) {
-        Seance idsec=seanceDAO.findSingleSeance(getSeanceNr());
         FacesContext ctx = FacesContext.getCurrentInstance();
         Reservation reservation = new Reservation();
-        Seance toupdate= seanceDAO.findSingleSeance(idsec.getIdseanse());
-        int minus=toupdate.getTickets();
 
-            if(minus<ticketNumber){
-                ctx.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,
-                        "Brak tylu wolnych biletów. Pozostało : " + minus + " sztuk.", null));
-                return PAGE_STAY_AT_THE_SAME;
+//        if(seanceDAO.findNr(getSeanceNr())==false){
+////            ctx.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,
+////                    "Brak wybranego seansu.", null));
+////            return PAGE_STAY_AT_THE_SAME;
+////        }
 
-            }else {
+            boolean go=false;
+            otherloop:
+        for(Seance seance : aseance) {
+            if(seance.getIdseanse()==getSeanceNr()){
+                go=true;
+                break otherloop;
 
-                try {
-                    reservation.setAmount(ticketNumber);
-                    reservation.setSeanceByIdseance(seanceDAO.findSingleSeance(idsec.getIdseanse()));
-                    reservation.setUserByIduser(userDAO.findSinglePerson(nicks));
-
-                    reservationDAO.create(reservation);
-                    minus=minus-ticketNumber;
-                   toupdate.setTickets(minus);
-                   seanceDAO.merge(toupdate);
-
-                } catch (Exception e) {
-                    e.printStackTrace();
-                    context.addMessage(null,
-                            new FacesMessage(FacesMessage.SEVERITY_ERROR, "wystąpił błąd podczas zapisu", null));
-                    return PAGE_STAY_AT_THE_SAME;
-                }
             }
 
+        }
+
+        if(go==false){
+            ctx.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,
+                    "Brak wybranego seansu.", null));
+            return PAGE_STAY_AT_THE_SAME;
+
+        }
+
+
+        Seance idsec=seanceDAO.findSingleSeance(getSeanceNr());
+
+        Seance toupdate= seanceDAO.findSingleSeance(idsec.getIdseanse());
+        int minus=toupdate.getTickets();
+            if(ticketNumber<1 || ticketNumber>4){
+                ctx.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,
+                        "Dozwolona ilość biletów to 1-4 szt.", null));
+                return PAGE_STAY_AT_THE_SAME;
+
+            }
+
+            else {
+
+                if (minus < ticketNumber) {
+                    ctx.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,
+                            "Brak tylu wolnych biletów. Pozostało : " + minus + " sztuk.", null));
+                    return PAGE_STAY_AT_THE_SAME;
+
+                } else {
+
+                    try {
+                        reservation.setAmount(ticketNumber);
+                        reservation.setSeanceByIdseance(seanceDAO.findSingleSeance(idsec.getIdseanse()));
+                        reservation.setUserByIduser(userDAO.findSinglePerson(nicks));
+
+                        reservationDAO.create(reservation);
+                        minus = minus - ticketNumber;
+                        toupdate.setTickets(minus);
+                        seanceDAO.merge(toupdate);
+
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        context.addMessage(null,
+                                new FacesMessage(FacesMessage.SEVERITY_ERROR, "wystąpił błąd podczas zapisu", null));
+                        return PAGE_STAY_AT_THE_SAME;
+                    }
+                }
+            }
         return PAGE_PROFIL;
 
     }

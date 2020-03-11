@@ -31,6 +31,50 @@
         p {
             font-size: 15px;
         }
+
+        .myButton {
+            -moz-box-shadow: 0px 10px 14px -7px #276873;
+            -webkit-box-shadow: 0px 10px 14px -7px #276873;
+            box-shadow: 0px 10px 14px -7px #276873;
+            background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #81c3db), color-stop(1, #408c99));
+            background:-moz-linear-gradient(top, #81c3db 5%, #408c99 100%);
+            background:-webkit-linear-gradient(top, #81c3db 5%, #408c99 100%);
+            background:-o-linear-gradient(top, #81c3db 5%, #408c99 100%);
+            background:-ms-linear-gradient(top, #81c3db 5%, #408c99 100%);
+            background:linear-gradient(to bottom, #81c3db 5%, #408c99 100%);
+            filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#81c3db', endColorstr='#408c99',GradientType=0);
+            background-color:#81c3db;
+            -webkit-border-radius:8px;
+            -moz-border-radius:8px;
+            border-radius:8px;
+            display:inline-block;
+            cursor:pointer;
+            color:#ffffff;
+            font-family:Arial;
+            font-size:20px;
+            font-weight:bold;
+            padding:5px 2px;
+            text-decoration:none;
+            text-shadow:0px 1px 0px #3d768a;
+        }
+        .myButton:hover {
+            background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #408c99), color-stop(1, #81c3db));
+            background:-moz-linear-gradient(top, #408c99 5%, #81c3db 100%);
+            background:-webkit-linear-gradient(top, #408c99 5%, #81c3db 100%);
+            background:-o-linear-gradient(top, #408c99 5%, #81c3db 100%);
+            background:-ms-linear-gradient(top, #408c99 5%, #81c3db 100%);
+            background:linear-gradient(to bottom, #408c99 5%, #81c3db 100%);
+            filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#408c99', endColorstr='#81c3db',GradientType=0);
+            background-color:#408c99;
+        }
+        .myButton:active {
+            position:relative;
+            top:1px;
+        }
+
+
+
+
     </style>
 
 
@@ -41,9 +85,9 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbar12">
-                <p:commandLink action="#{menuListBB.menu()}">
-                    <i class="fa d-inline fa-lg fa-circle"></i>
-                    <b> Kino Piast</b>
+                <p:commandLink action="#{menuListBB.menu()}" style="text-decoration:none;color:#f5f2ff;">
+                    <h2>  <i class="fa d-inline fa-lg fa-circle"></i>
+                    Kino Piast</h2>
                 </p:commandLink>
 
 
@@ -51,47 +95,23 @@
 
 
 
-
-<!--<h:form>
-                <p:tabMenu activeIndex="#{param.i}">
-                    <p:menuitem value="Menu"  action="#{menuListBB.menu()}" >
-                        <f:param name="i" value="0" />
-                    </p:menuitem>
-                    <p:menuitem value="Baza Filmów"   action="#{menuListBB.movie()}">
-                        <f:param name="i" value="1" />
-                    </p:menuitem>
-                    <p:menuitem value="Seanse"  action="#{menuListBB.seance()}">
-                        <f:param name="i" value="2" />
-                    </p:menuitem>
-                    <p:menuitem value="Panel Pracowniczy"  action="#{menuListBB.personList()}"  >
-                        <f:param name="i" value="3" />
-                    </p:menuitem>
-                    <p:menuitem value="Zaloguj"  action="#{menuListBB.login()}" rendered="#{ empty remoteClient.details.name}">
-                        <f:param name="i" value="4" />
-                    </p:menuitem>
-                    <p:menuitem value="Moje konto"  action="#{menuListBB.myAcc()}" rendered="#{not empty remoteClient.details.name}" >
-                        <f:param name="i" value="5" />
-                    </p:menuitem>
-
-                </p:tabMenu>
-</h:form>-->
-                                <ul class="navbar-nav mx-auto">
+ <ul class="navbar-nav mx-auto">
 
 
                                     <p:commandButton value="Menu"
-                                                     action="#{menuListBB.menu()}" style="margin-bottom:1em;"/>
+                                                     action="#{menuListBB.menu()}" style="margin-bottom:1em;" styleClass="btn btn-warning"/>
                                     <p:commandButton value="Baza filmów"
-                                                     action="#{menuListBB.movie()}" style="margin-bottom:1em;"/>
+                                                     action="#{menuListBB.movie()}" style="margin-bottom:1em;"  styleClass="btn btn-warning"/>
                                     <p:commandButton value="Seans"
-                                                     action="#{menuListBB.seance()}" style="margin-bottom:1em;"/>
+                                                     action="#{menuListBB.seance()}" style="margin-bottom:1em;" styleClass="btn btn-warning"/>
                                     <p:commandButton value="Panel pracowniczy"
-                                                     action="#{menuListBB.personList()}" style="margin-bottom:1em;"/>
+                                                     action="#{menuListBB.moviePanel()}" style="margin-bottom:1em;" styleClass="btn btn-warning"/>
                                     <p:commandButton value="Zaloguj sie"
-                                                     action="#{menuListBB.login()}" style="margin-bottom:1em;" rendered="#{ empty remoteClient.details.name}"/>
+                                                     action="#{menuListBB.login()}" style="margin-bottom:1em;" rendered="#{ empty remoteClient.details.name}" styleClass="btn btn-secondary"/>
                                     <p:commandButton value="Moje Konto"
-                                                     action="#{menuListBB.myAcc()}" style="margin-bottom:1em;" rendered="#{not empty remoteClient.details.name}"/>
-                                    <p:commandButton value="Wyloguj sie"
-                                                     action="#{loginBB.doLogout()}" style="margin-bottom:1em;" rendered="#{not empty remoteClient.details.name}" />
+                                                     action="#{menuListBB.myAcc()}" style="margin-bottom:1em;" rendered="#{not empty remoteClient.details.name}" styleClass="btn btn-warning"/>
+                                    <p:commandButton value="Wyloguj się"
+                                                     action="#{loginBB.doLogout()}" style="margin-bottom:1em;" rendered="#{not empty remoteClient.details.name}" styleClass="btn btn-secondary"/>
 
 
                                 </ul>

@@ -15,10 +15,38 @@
                 body {
                     background-image: url("https://cdn.inspirationhut.net/wp-content/uploads/2013/05/201.png");
                 }
+
                 .old {
-                    background-color: #fca752 !important;
+                    background-color: #fc3c32 !important;
                     background-image: none !important;
                     color: #000000 !important;
+                }
+
+                .myButton1 {
+                    box-shadow: 0px 10px 14px -7px #3e7327;
+                    background: linear-gradient(to bottom, #77b55a 5%, #72b352 100%);
+                    background-color: #77b55a;
+                    border-radius: 4px;
+                    border: 1px solid #4b8f29;
+                    display: inline-block;
+                    cursor: pointer;
+                    color: #ffffff;
+                    font-family: Arial;
+                    font-size: 13px;
+                    font-weight: bold;
+                    padding: 12px 41px;
+                    text-decoration: none;
+                    text-shadow: 0px 1px 0px #5b8a3c;
+                }
+
+                .myButton1:hover {
+                    background: linear-gradient(to bottom, #72b352 5%, #77b55a 100%);
+                    background-color: #72b352;
+                }
+
+                .myButton1:active {
+                    position: relative;
+                    top: 1px;
                 }
             </style>
 
@@ -34,8 +62,11 @@
                         <td width="70%" height="70%" style="padding-left:70px">
 
 
-                            <p:dataTable value="#{seanceListBB.availableSeance}" var="s" style="margin-bottom:20px ;height:450px ; width:70%"  rowStyleClass="#{s.tickets  le 10 ? 'old' : null}"  paginatorTemplate="{PageLinks}  "
-                                         paginator="true" rows="3" >
+                            <p:dataTable value="#{seanceListBB.availableSeance}" var="s"
+                                         style="margin-bottom:20px ;height:450px ; width:70%"
+                                         rowStyleClass="#{s.tickets  le 10 ? 'old' : null}"
+                                         paginatorTemplate="{PageLinks}  "
+                                         paginator="true" rows="3">
 
                                 <p:column priority="5">
                                     <f:facet name="header">
@@ -44,113 +75,120 @@
                                     <h:outputText value="#{s.idseanse}"/>
                                 </p:column>
 
-                            <p:column priority="5">
-                                <f:facet name="header">
-                                    <h:outputText value="Tytuł filmu"/>
-                                </f:facet>
-                                <h:outputText value="#{s.movieByIdmovie.title}"/>
-                            </p:column>
+                                <p:column priority="5">
+                                    <f:facet name="header">
+                                        <h:outputText value="Tytuł filmu"/>
+                                    </f:facet>
+                                    <h:outputText value="#{s.movieByIdmovie.title}"/>
+                                </p:column>
 
 
-                            <p:column priority="3">
-                                <f:facet name="header">
-                                    <h:outputText value="Czas trwania(minuty)"/>
-                                </f:facet>
-                                <h:outputText value="#{s.movieByIdmovie.time}"/>
-                            </p:column>
+                                <p:column priority="3">
+                                    <f:facet name="header">
+                                        <h:outputText value="Czas trwania(minuty)"/>
+                                    </f:facet>
+                                    <h:outputText value="#{s.movieByIdmovie.time}"/>
+                                </p:column>
 
-                            <p:column priority="4">
-                                <f:facet name="header">
-                                    <h:outputText value="Data seansu"/>
-                                </f:facet>
-                                <h:outputText value="#{s.seanceDate}"/>
-                            </p:column>
-
-
-                            <p:column priority="5">
-                                <f:facet name="header">
-                                    <h:outputText value="Numer sali"/>
-                                </f:facet>
-                                <h:outputText value="#{s.hallByIdhall.idhall}"/>
-                            </p:column>
+                                <p:column priority="4">
+                                    <f:facet name="header">
+                                        <h:outputText value="Data seansu"/>
+                                    </f:facet>
+                                    <h:outputText value="#{s.seanceDate}"/>
+                                </p:column>
 
 
-                            <p:column priority="5">
-                                <f:facet name="header">
-                                    <h:outputText value="Ilość dostępnych biletów"/>
-                                </f:facet>
-                                <h:outputText value="#{s.tickets}"/>
-                            </p:column>
+                                <p:column priority="5">
+                                    <f:facet name="header">
+                                        <h:outputText value="Numer sali"/>
+                                    </f:facet>
+                                    <h:outputText value="#{s.hallByIdhall.idhall}"/>
+                                </p:column>
 
 
-<!--                            <p:column priority="5" rendered="#{not empty remoteClient.details.name}" width="250px">-->
-
-<!--                                <form>-->
-
-
-<!--                                    <f:facet name="header">-->
-<!--                                        <h:outputText value="Rezerwacja-podaj ilość biletów"/>-->
-<!--                                    </f:facet>-->
+                                <p:column priority="5">
+                                    <f:facet name="header">
+                                        <h:outputText value="Ilość dostępnych biletów"/>
+                                    </f:facet>
+                                    <h:outputText value="#{s.tickets}"/>
+                                </p:column>
 
 
-<!--                                    <h:inputText id="p-tic"  value="#{seanceListBB.ticketNumber}"  style="width: 30px; margin-right: 1px;">-->
-<!--                                        <f:convertNumber integerOnly="true" type="number" />-->
-<!--                                    </h:inputText>-->
+                                <!--                            <p:column priority="5" rendered="#{not empty remoteClient.details.name}" width="250px">-->
+
+                                <!--                                <form>-->
 
 
-<!--                                    <p:commandButton value="Rezerwuj"-->
-<!--                                                     action="#{seanceListBB.newReservation(remoteClient.details.nick, s)}" style="margin-bottom:1em;"   update="@form"/>-->
-
-<!--                                    <p:message for="p-tic" display="icon"/>-->
-<!--                                </form>-->
-
-<!--                            </p:column>-->
+                                <!--                                    <f:facet name="header">-->
+                                <!--                                        <h:outputText value="Rezerwacja-podaj ilość biletów"/>-->
+                                <!--                                    </f:facet>-->
 
 
+                                <!--                                    <h:inputText id="p-tic"  value="#{seanceListBB.ticketNumber}"  style="width: 30px; margin-right: 1px;">-->
+                                <!--                                        <f:convertNumber integerOnly="true" type="number" />-->
+                                <!--                                    </h:inputText>-->
 
 
+                                <!--                                    <p:commandButton value="Rezerwuj"-->
+                                <!--                                                     action="#{seanceListBB.newReservation(remoteClient.details.nick, s)}" style="margin-bottom:1em;"   update="@form"/>-->
 
+                                <!--                                    <p:message for="p-tic" display="icon"/>-->
+                                <!--                                </form>-->
+
+                                <!--                            </p:column>-->
 
 
                             </p:dataTable>
 
 
-                            <h:form>
+                            <h:form rendered="#{not empty remoteClient.details.name}">
 
                                 <h:panelGrid columns="3" cellpadding="5">
 
-                                <h:outputLabel for="nr" value="Numer seansu"/>
-                                <h:inputText id="nr"  value="#{seanceListBB.seanceNr}"  style="width: 30px; margin-right: 1px;">
+                                    <h:outputLabel for="nr" value="Numer seansu"/>
+                                    <h:inputText id="nr" value="#{seanceListBB.seanceNr}"
+                                                 style="width: 70px; margin-right: 1px; height: 30px;">
 
-                                    <f:convertNumber integerOnly="true" type="number" />
-                                </h:inputText>
+                                        <f:convertNumber integerOnly="true" type="number"/>
+                                    </h:inputText>
+                                    <p:message for="nr" display="icon"/>
 
-                                <h:outputLabel for="p-time" value="Ilość biletów" />
-                                <h:inputText id="p-time"  value="#{seanceListBB.ticketNumber}">
-                                    <f:validateLength maximum="3"/>
-                                    <f:convertNumber integerOnly="true" type="number" />
-                                </h:inputText>
+
+                                    <h:outputLabel for="p-tic" value="Ilość biletów"/>
+                                    <h:inputText id="p-tic" value="#{seanceListBB.ticketNumber}"
+                                                 style="width: 70px; margin-right: 1px; height: 30px;">
+
+                                        <f:convertNumber integerOnly="true" type="number"/>
+                                    </h:inputText>
+                                    <p:message for="p-tic"/>
 
                                 </h:panelGrid>
+                                <h:messages/>
+                                <h:commandButton value="Rezerwuj"
+                                                 action="#{seanceListBB.newReservation(remoteClient.details.nick)}"
+                                                 update="msg" styleClass="myButton1"/>
+
                             </h:form>
-                            <p:commandButton value="Rezerwuj" action="#{seanceListBB.newReservation(remoteClient.details.nick)}" style="margin-bottom:1em;" />
-
-                                                    </td>
-                                                    <td>
-                                                        <img class="img-fluid d-block" src="http://tiny.cc/mf1pkz" width="70%" height="60%"></img>
-
-                                                    </td>
-                                                </tr>
-
-                                            </table>
-                                        </h:form>
 
 
+                        </td>
+                        <td>
+                            <img class="img-fluid d-block" src="http://tiny.cc/mf1pkz" width="70%" height="60%"></img>
 
-                                        <p:commandButton value="Aby zarezerwować bilet- zaloguj się ! "
-                                                         action="#{seanceListBB.login}" style="margin-bottom:1em;" rendered="#{empty remoteClient.details.name}"/>
+                        </td>
+                    </tr>
 
-                                    </h:body>
-                                </ui:define>
-                            </ui:composition>
-                            </html>
+                </table>
+            </h:form>
+
+
+
+
+
+        </h:body>
+        <p:commandButton value="Aby zarezerwować bilet- zaloguj się ! "
+                         action="#{seanceListBB.login}" style="margin-bottom:1em;"
+                         rendered="#{ empty remoteClient.details.name}" class="btn btn-info"/>
+    </ui:define>
+</ui:composition>
+</html>

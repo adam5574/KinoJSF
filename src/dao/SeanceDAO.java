@@ -1,5 +1,6 @@
 package dao;
 
+import entities.Movie;
 import entities.Seance;
 import entities.User;
 
@@ -73,6 +74,18 @@ public class SeanceDAO {
             e.printStackTrace();
             return null;
         }
+    }
+
+        public boolean findNr(int nr) {
+            try {
+                Query query = em.createQuery("SELECT s FROM Seance s WHERE s.idseanse = :nr AND s.tickets>0 AND s.seanceDate>= CURRENT_TIMESTAMP", Seance.class);
+                query.setParameter("nr", nr);
+                return true;
+            } catch (Exception e) {
+                e.printStackTrace();
+                return false;
+            }
+        }
 
 
     }
@@ -82,4 +95,4 @@ public class SeanceDAO {
 
 
 
-}
+

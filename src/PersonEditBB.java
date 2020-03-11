@@ -18,6 +18,7 @@ public class PersonEditBB implements Serializable {
     private static final long serialVersionUID = 1L;
 
     private static final String PAGE_MENU = "menu?faces-redirect=true";
+    private static final String PAGE_PERSON = "personList?faces-redirect=true";
     private static final String PAGE_STAY_AT_THE_SAME = null;
 
     private User user = new User();
@@ -105,7 +106,7 @@ public class PersonEditBB implements Serializable {
             return PAGE_STAY_AT_THE_SAME;
         }
 
-        return PAGE_MENU;
+        return PAGE_PERSON;
     }
 
 

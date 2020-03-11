@@ -24,6 +24,7 @@ public class SeanceAddBB implements Serializable {
     private static final String PAGE_PERSON_LIST = "personList?faces-redirect=true";
     private static final String PAGE_STAY_AT_THE_SAME = null;
     private static final String PAGE_MENU = "menu?faces-redirect=true";
+    private static final String PAGE_SEANCE = "moviePanel?faces-redirect=true";
 
     private Seance seance = new Seance();
     private Seance loaded = null;
@@ -206,7 +207,7 @@ public class SeanceAddBB implements Serializable {
         }
 
 
-        return PAGE_MENU;
+        return PAGE_SEANCE;
 
     }
 }

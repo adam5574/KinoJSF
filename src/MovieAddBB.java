@@ -24,7 +24,7 @@ public class MovieAddBB implements Serializable {
     private static final String PAGE_PERSON_LIST = "personList?faces-redirect=true";
     private static final String PAGE_STAY_AT_THE_SAME = null;
     private static final String PAGE_MENU = "menu?faces-redirect=true";
-
+    private static final String PAGE_MOVIE = "moviePanel?faces-redirect=true";
     private Movie movie = new Movie();
     private Category category;
     private Movie loaded = null;
@@ -143,7 +143,7 @@ public class MovieAddBB implements Serializable {
         }
 
 
-        return PAGE_MENU;
+        return PAGE_MOVIE;
 
     }
 }
